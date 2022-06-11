@@ -19,7 +19,57 @@ const App = () => {
   };
 
   const checkIsWinner = () => {
-    //
+    if (
+      itemArray[0] === itemArray[1] &&
+      itemArray[1] === itemArray[2] &&
+      itemArray[0] !== 'empty'
+    ) {
+      setWinMessage(`${itemArray[0]} won`);
+    } else if (
+      itemArray[3] === itemArray[4] &&
+      itemArray[4] === itemArray[5] &&
+      itemArray[3] !== 'empty'
+    ) {
+      setWinMessage(`${itemArray[3]} won`);
+    } else if (
+      itemArray[6] === itemArray[7] &&
+      itemArray[7] === itemArray[8] &&
+      itemArray[6] !== 'empty'
+    ) {
+      setWinMessage(`${itemArray[6]} won`);
+    } else if (
+      itemArray[0] === itemArray[3] &&
+      itemArray[3] === itemArray[6] &&
+      itemArray[0] !== 'empty'
+    ) {
+      setWinMessage(`${itemArray[0]} won`);
+    } else if (
+      itemArray[1] === itemArray[4] &&
+      itemArray[4] === itemArray[7] &&
+      itemArray[1] !== 'empty'
+    ) {
+      setWinMessage(`${itemArray[1]} won`);
+    } else if (
+      itemArray[2] === itemArray[5] &&
+      itemArray[5] === itemArray[8] &&
+      itemArray[2] !== 'empty'
+    ) {
+      setWinMessage(`${itemArray[2]} won`);
+    } else if (
+      itemArray[0] === itemArray[4] &&
+      itemArray[4] === itemArray[8] &&
+      itemArray[0] !== 'empty'
+    ) {
+      setWinMessage(`${itemArray[0]} won`);
+    } else if (
+      itemArray[2] === itemArray[4] &&
+      itemArray[4] === itemArray[6] &&
+      itemArray[2] !== 'empty'
+    ) {
+      setWinMessage(`${itemArray[2]} won`);
+    } else if (!itemArray.includes('empty')) {
+      setWinMessage(`Match Draw`);
+    }
   };
 
   const changeItem = (itemNumber) => {
@@ -46,7 +96,7 @@ const App = () => {
               <h1 className="text-success text-uppercase text-center">
                 {winMessage}
               </h1>
-              <Button color="sucess" block onClick={reloadGame}>
+              <Button color="success" block onClick={reloadGame}>
                 Reload the game
               </Button>
             </div>
@@ -57,7 +107,11 @@ const App = () => {
           )}
           <div className="grid">
             {itemArray.map((item, index) => (
-              <Card>
+              <Card
+                color="warning"
+                onClick={() => changeItem(index)}
+                key={index}
+              >
                 <CardBody className="box">
                   <Icon name={item} />
                 </CardBody>
